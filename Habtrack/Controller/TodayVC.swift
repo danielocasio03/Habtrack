@@ -20,6 +20,17 @@ class TodayVC: UIViewController {
 		super.viewDidLoad()
 		setupView()
 		setupContentView()
+		
+		// Fix - Add to own method (Here temporarily for testing purposes)
+		Task {
+			do {
+				let quote = try await QuoteFetchManager.shared.getDailyQuote()
+				todayContentView.dailyInspirationView.quoteTextLabel.text = quote.quote
+				todayContentView.dailyInspirationView.quoteAuthorLabel.text = quote.author
+			} catch {
+				print("Error getting info")
+			}
+		}
 	}
 	
 	

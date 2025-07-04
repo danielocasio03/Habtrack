@@ -12,12 +12,12 @@ class DailyInspirationView: UIView {
 	
 	//MARK: - Subviews and Properties
 	
-	lazy var titleLabel: UILabel = {
+	private lazy var titleLabel: UILabel = {
 		let label = UILabel()
 		label.translatesAutoresizingMaskIntoConstraints = false
 		label.text = "Daily Inspiration"
 		label.textColor = DesignManager.shared.charcoalTextColor.withAlphaComponent(0.75)
-		label.font = UIFont(name: "AvenirNext-DemiBold", size: 18)
+		label.font = UIFont(name: "AvenirNext-DemiBold", size: 22)
 		return label
 	}()
 	
@@ -41,8 +41,7 @@ class DailyInspirationView: UIView {
 		label.textColor = DesignManager.shared.quoteTextColor
 		label.numberOfLines = 3
 		label.lineBreakMode = .byWordWrapping
-		label.text = "You can never cross the ocean until you have the courage to lose sight of the shore." // Delete
-		label.font = UIFont(name: "AvenirNext-Regular", size: 14) // Change to use Alexandria after imported
+		label.font = UIFont(name: "Georgia", size: 16)
 		return label
 	}()
 	
@@ -52,17 +51,16 @@ class DailyInspirationView: UIView {
 		label.textColor = DesignManager.shared.quoteTextColor
 		label.numberOfLines = 2
 		label.lineBreakMode = .byWordWrapping
-		label.text = "Christopher Columbus" // Delete
-		label.font = UIFont(name: "AvenirNext-Bold", size: 14) // Change to use Alexandria after imported
+		label.font = UIFont(name: "Georgia-Bold", size: 15)
 		return label
 	}()
 	
-	lazy var decorativeQuoteLabel: UILabel = {
+	private lazy var decorativeQuoteLabel: UILabel = {
 		let label = UILabel()
 		label.translatesAutoresizingMaskIntoConstraints = false
 		label.textColor = DesignManager.shared.quoteTextColor
 		label.text = "“"
-		label.font = UIFont(name: "AvenirNext-Bold", size: 40) // Change to use Alexandria-Bold after its imported
+		label.font = UIFont(name: "Georgia-Bold", size: 45)
 		return label
 	}()
 	
@@ -81,7 +79,7 @@ class DailyInspirationView: UIView {
 	
 	//MARK: - Setup Methods
 	
-	func setupView() {
+	private func setupView() {
 		addSubview(titleLabel)
 		addSubview(quoteContainer)
 		
@@ -99,17 +97,16 @@ class DailyInspirationView: UIView {
 		quoteContainer.addSubview(decorativeQuoteLabel)
 		
 		NSLayoutConstraint.activate([
-			quoteTextLabel.leadingAnchor.constraint(equalTo: quoteContainer.leadingAnchor, constant: 40),
-			quoteTextLabel.trailingAnchor.constraint(equalTo: quoteContainer.trailingAnchor, constant: -40),
-			quoteTextLabel.centerYAnchor.constraint(equalTo: quoteContainer.centerYAnchor),
+			quoteTextLabel.leadingAnchor.constraint(equalTo: quoteContainer.leadingAnchor, constant: 45),
+			quoteTextLabel.trailingAnchor.constraint(equalTo: quoteContainer.trailingAnchor, constant: -45),
+			quoteTextLabel.centerYAnchor.constraint(equalTo: quoteContainer.centerYAnchor, constant: -5),
 			quoteTextLabel.centerXAnchor.constraint(equalTo: quoteContainer.centerXAnchor),
-			quoteAuthorLabel.trailingAnchor.constraint(equalTo: quoteContainer.trailingAnchor, constant: -20),
-			quoteAuthorLabel.topAnchor.constraint(greaterThanOrEqualTo: quoteTextLabel.bottomAnchor),
-			quoteAuthorLabel.bottomAnchor.constraint(equalTo: quoteContainer.bottomAnchor, constant: -10),
-			decorativeQuoteLabel.topAnchor.constraint(equalTo: quoteContainer.topAnchor, constant: 10),
+			quoteAuthorLabel.trailingAnchor.constraint(equalTo: quoteTextLabel.trailingAnchor),
+			quoteAuthorLabel.topAnchor.constraint(equalTo: quoteTextLabel.bottomAnchor, constant: 10),
+			quoteAuthorLabel.bottomAnchor.constraint(lessThanOrEqualTo: quoteContainer.bottomAnchor, constant: -10),
+			decorativeQuoteLabel.topAnchor.constraint(equalTo: quoteContainer.topAnchor, constant: 15),
 			decorativeQuoteLabel.trailingAnchor.constraint(equalTo: quoteTextLabel.leadingAnchor, constant: -5)
 		])
-
 	}
 	
 	

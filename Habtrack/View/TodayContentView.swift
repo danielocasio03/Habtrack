@@ -15,18 +15,16 @@ class TodayContentView: UIView {
 	
 	let dailyInspirationView = DailyInspirationView()
 	
-	lazy var scrollView: UIScrollView = {
+	private lazy var scrollView: UIScrollView = {
 		let scrollView = UIScrollView()
 		scrollView.translatesAutoresizingMaskIntoConstraints = false
 		scrollView.showsHorizontalScrollIndicator = false
-//		scrollView.backgroundColor = .red  // Delete after Tests
 		return scrollView
 	}()
 	
-	lazy var contentView: UIView = {
+	private lazy var contentView: UIView = {
 		let contentView = UIView()
 		contentView.translatesAutoresizingMaskIntoConstraints = false
-//		contentView.backgroundColor = .green // Delete after Tests
 		return contentView
 	}()
 
@@ -45,7 +43,7 @@ class TodayContentView: UIView {
 	
 	//MARK: - Setup Methods
 	
-	func setupScrollView() {
+	private func setupScrollView() {
 		self.addSubview(scrollView)
 		scrollView.addSubview(contentView)
 		
@@ -62,13 +60,13 @@ class TodayContentView: UIView {
 		])
 	}
 	
-	func setupContentView() {
+	private func setupContentView() {
 		contentView.addSubview(dailyInspirationView)
 		dailyInspirationView.translatesAutoresizingMaskIntoConstraints = false
 		
 		NSLayoutConstraint.activate([
 			dailyInspirationView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
-			dailyInspirationView.heightAnchor.constraint(equalToConstant: 165), // Fix to make dynamic height
+			dailyInspirationView.heightAnchor.constraint(equalToConstant: 180), // Fix to make dynamic height
 			dailyInspirationView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
 			dailyInspirationView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
 			dailyInspirationView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20)
