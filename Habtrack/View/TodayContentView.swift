@@ -14,7 +14,7 @@ class TodayContentView: UIView {
 	//MARK: - Subviews & Properties
 	
 	let dailyInspirationView = DailyInspirationView()
-	
+		
 	private lazy var scrollView: UIScrollView = {
 		let scrollView = UIScrollView()
 		scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -26,6 +26,12 @@ class TodayContentView: UIView {
 		let contentView = UIView()
 		contentView.translatesAutoresizingMaskIntoConstraints = false
 		return contentView
+	}()
+	
+	private lazy var titleView: ScreenTitleView = {
+		let view = ScreenTitleView()
+		view.translatesAutoresizingMaskIntoConstraints = false
+		return view
 	}()
 
 	
@@ -64,13 +70,17 @@ class TodayContentView: UIView {
 	
 	private func setupContentView() {
 		contentView.addSubview(dailyInspirationView)
+		contentView.addSubview(titleView)
 		dailyInspirationView.translatesAutoresizingMaskIntoConstraints = false
 		
 		NSLayoutConstraint.activate([
-			dailyInspirationView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
-			dailyInspirationView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-			dailyInspirationView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-			dailyInspirationView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20)
+			titleView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor),
+			titleView.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor),
+			titleView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+			dailyInspirationView.topAnchor.constraint(equalTo: titleView.bottomAnchor, constant: DesignManager.Spacing.large.value),
+			dailyInspirationView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: DesignManager.Spacing.standard.value),
+			dailyInspirationView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -DesignManager.Spacing.standard.value),
+			dailyInspirationView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -DesignManager.Spacing.standard.value)
 
 		])
 	}

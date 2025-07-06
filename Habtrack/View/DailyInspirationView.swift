@@ -18,7 +18,7 @@ class DailyInspirationView: UIView {
 		label.translatesAutoresizingMaskIntoConstraints = false
 		label.text = "Daily Inspiration"
 		label.textColor = DesignManager.shared.headingTextColor.withAlphaComponent(0.75)
-		label.font = UIFont(name: "AvenirNext-DemiBold", size: 22)
+		label.font = UIFont(name: "AvenirNext-DemiBold", size: 21)
 		return label
 	}()
 	
@@ -30,7 +30,7 @@ class DailyInspirationView: UIView {
 		view.isSkeletonable = true
 		//shadow
 		view.layer.shadowRadius = 4
-		view.layer.shadowColor = UIColor.black.cgColor
+		view.layer.shadowColor = DesignManager.shared.shadowColor.cgColor
 		view.layer.shadowOffset = CGSize(width: 0, height: 1)
 		view.layer.shadowOpacity = 0.25
 		view.layer.masksToBounds = false
@@ -95,7 +95,7 @@ class DailyInspirationView: UIView {
 		NSLayoutConstraint.activate([
 			titleLabel.topAnchor.constraint(equalTo: topAnchor),
 			titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-			quoteContainer.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
+			quoteContainer.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: DesignManager.Spacing.standard.value),
 			quoteContainer.bottomAnchor.constraint(equalTo: bottomAnchor),
 			quoteContainer.leadingAnchor.constraint(equalTo: leadingAnchor),
 			quoteContainer.trailingAnchor.constraint(equalTo: trailingAnchor),
@@ -109,14 +109,14 @@ class DailyInspirationView: UIView {
 		quoteContainer.addSubview(decorativeQuoteLabel)
 		
 		NSLayoutConstraint.activate([
-			quoteTextLabel.leadingAnchor.constraint(equalTo: quoteContainer.leadingAnchor, constant: 45),
-			quoteTextLabel.trailingAnchor.constraint(equalTo: quoteContainer.trailingAnchor, constant: -45),
-			quoteTextLabel.centerYAnchor.constraint(equalTo: quoteContainer.centerYAnchor, constant: -5),
+			quoteTextLabel.leadingAnchor.constraint(equalTo: quoteContainer.leadingAnchor, constant: DesignManager.Spacing.xxLarge.value),
+			quoteTextLabel.trailingAnchor.constraint(equalTo: quoteContainer.trailingAnchor, constant: -DesignManager.Spacing.xxLarge.value),
+			quoteTextLabel.centerYAnchor.constraint(equalTo: quoteContainer.centerYAnchor, constant: -DesignManager.Spacing.small.value),
 			quoteAuthorLabel.trailingAnchor.constraint(equalTo: quoteTextLabel.trailingAnchor),
-			quoteAuthorLabel.topAnchor.constraint(equalTo: quoteTextLabel.bottomAnchor, constant: 10),
-			quoteAuthorLabel.bottomAnchor.constraint(lessThanOrEqualTo: quoteContainer.bottomAnchor, constant: -10),
-			decorativeQuoteLabel.topAnchor.constraint(equalTo: quoteContainer.topAnchor, constant: 15),
-			decorativeQuoteLabel.trailingAnchor.constraint(equalTo: quoteTextLabel.leadingAnchor, constant: -5)
+			quoteAuthorLabel.topAnchor.constraint(equalTo: quoteTextLabel.bottomAnchor, constant: DesignManager.Spacing.medium.value),
+			quoteAuthorLabel.bottomAnchor.constraint(lessThanOrEqualTo: quoteContainer.bottomAnchor, constant: -DesignManager.Spacing.standard.value),
+			decorativeQuoteLabel.topAnchor.constraint(equalTo: quoteContainer.topAnchor, constant: DesignManager.Spacing.medium.value),
+			decorativeQuoteLabel.trailingAnchor.constraint(equalTo: quoteTextLabel.leadingAnchor, constant: -DesignManager.Spacing.small.value)
 		])
 	}
 	

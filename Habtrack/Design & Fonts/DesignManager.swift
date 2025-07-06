@@ -5,11 +5,45 @@ final class DesignManager {
 	static let shared = DesignManager()
 	private init() {}
 	
+	
+	//MARK: - Dynamic Content and Utilities
+	
+	/// Padding for subview constraints. For consistency across code base
+	enum Spacing: CGFloat {
+		/// Underlying value of 8
+		case small = 8
+		/// Underlying value of 16
+		case medium = 16
+		/// Underlying value of 20
+		case standard = 20
+		/// Underlying value of 30
+		case large = 30
+		/// Underlying value of 40
+		case xLarge = 40
+		/// Underlying value of 50
+		case xxLarge = 50
+		
+		var value: CGFloat {
+			return self.rawValue
+		}
+	}
+	
+	/// Returns greeting based off time of day
+	var greeting: String {
+		switch Calendar.current.component(.hour, from: Date()) {
+		case 6..<12: return "Good Morning"  	// Morning Scheme (6am - 11:59am)
+		case 12..<18: return "Good Afternoon" 	// Afternoon Scheme (12pm - 5:59pm)
+		default: return "Good Evening"			// Evening Scheme (6pm - 6am)
+		}
+	}
+	
+	
 	// MARK: - Colors (Light & Dark Mode)
+	
 	var backgroundColor: UIColor {
 		UIColor { $0.userInterfaceStyle == .dark ?
 			// Dark Mode; charcoal black Color
-			UIColor(red: 18/255, green: 18/255, blue: 18/255, alpha: 1) :
+			UIColor(red: 13/255, green: 13/255, blue: 13/255, alpha: 1) :
 			// Light Mode; off white color
 			UIColor(red: 255/255, green: 251/255, blue: 254/255, alpha: 1)
 		}
@@ -18,7 +52,7 @@ final class DesignManager {
 	var containerColor: UIColor {
 		UIColor { $0.userInterfaceStyle == .dark ?
 			// Dark Mode; lighter black Color
-			UIColor(red: 28/255, green: 28/255, blue: 30/255, alpha: 1) :
+			UIColor(red: 23/255, green: 23/255, blue: 23/255, alpha: 1) :
 			// Light Mode; White Color
 			UIColor.white
 		}
@@ -28,7 +62,7 @@ final class DesignManager {
 	var headingTextColor: UIColor {
 		UIColor { $0.userInterfaceStyle == .dark ?
 			// Dark Mode; Light grey Color
-			UIColor(red: 235/255, green: 235/255, blue: 245/255, alpha: 1) :
+			UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1) :
 			// Light Mode; Charcoal Color
 			UIColor(red: 25/255, green: 23/255, blue: 22/255, alpha: 1)
 		}
@@ -37,10 +71,31 @@ final class DesignManager {
 	// Accent text color; seen in the quote and author labels.  : Dark = Orange
 	var accentTextColor: UIColor {
 		UIColor { $0.userInterfaceStyle == .dark ?
-			// Dark Mode; Orange Color
-			UIColor(red: 255/255, green: 149/255, blue: 0/255, alpha: 1) :
+			// Dark Mode; Electric Blue Color
+			UIColor(red: 52/255, green: 152/255, blue: 219/255, alpha: 1) :
 			// Light Mode; Red Color
 			UIColor(red: 131/255, green: 54/255, blue: 63/255, alpha: 1)
 		}
 	}
+	
+	var shadowColor: UIColor {
+		UIColor {$0.userInterfaceStyle == .dark ?
+			// Dark Mode; Stronger Shadow
+			UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.6) :
+			// Light Mode; Subtle Shadow
+			UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.2)
+		}
+	}
+	
+	var dividerColor: UIColor {
+		UIColor {$0.userInterfaceStyle == .dark ?
+			// Dark Mode; Subtle grey divider
+			UIColor(red: 48/255, green: 48/255, blue: 48/255, alpha: 0.5) :
+			// Light Mode; Light grey divider
+			UIColor(red: 208/255, green: 207/255, blue: 207/255, alpha: 0.5)
+		}
+	}
+	
+	
+	
 }

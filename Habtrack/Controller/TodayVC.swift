@@ -10,7 +10,7 @@ import SkeletonView
 
 class TodayVC: UIViewController {
 	
-	//MARK: - Subviews and Properties
+	//MARK: - Subviews and PropertiesÏ
 	
 	private lazy var todayContentView = TodayContentView()
 

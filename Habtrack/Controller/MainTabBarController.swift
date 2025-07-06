@@ -43,6 +43,7 @@ class MainTabBarController: UITabBarController {
 		
 		// Creating Navigation Controllers and adding to TabBar VC's
 		let todayNav = UINavigationController(rootViewController: todayVC)
+		todayNav.setNavigationBarHidden(true, animated: false)
 		let habitsNav = UINavigationController(rootViewController: habitsVC)
 		self.viewControllers = [todayNav, habitsNav]
 		
