@@ -28,7 +28,7 @@ class TodayVC: UIViewController {
 	//MARK: - Private Setup Methods
 	
 	private func setupView() {
-		view.backgroundColor = DesignManager.shared.lightBGColor
+		view.backgroundColor = DesignManager.shared.backgroundColor
 	}
 	
 	private func setupContentView() {

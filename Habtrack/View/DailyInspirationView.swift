@@ -17,7 +17,7 @@ class DailyInspirationView: UIView {
 		let label = UILabel()
 		label.translatesAutoresizingMaskIntoConstraints = false
 		label.text = "Daily Inspiration"
-		label.textColor = DesignManager.shared.charcoalTextColor.withAlphaComponent(0.75)
+		label.textColor = DesignManager.shared.headingTextColor.withAlphaComponent(0.75)
 		label.font = UIFont(name: "AvenirNext-DemiBold", size: 22)
 		return label
 	}()
@@ -25,7 +25,7 @@ class DailyInspirationView: UIView {
 	private lazy var quoteContainer: UIView = {
 		let view = UIView()
 		view.translatesAutoresizingMaskIntoConstraints = false
-		view.backgroundColor = DesignManager.shared.whiteContColor
+		view.backgroundColor = DesignManager.shared.containerColor
 		view.layer.cornerRadius = 10
 		view.isSkeletonable = true
 		//shadow
@@ -40,7 +40,7 @@ class DailyInspirationView: UIView {
 	private lazy var quoteTextLabel: UILabel = {
 		let label = UILabel()
 		label.translatesAutoresizingMaskIntoConstraints = false
-		label.textColor = DesignManager.shared.quoteTextColor
+		label.textColor = DesignManager.shared.accentTextColor
 		label.numberOfLines = 0
 		label.lineBreakMode = .byWordWrapping
 		label.font = UIFont(name: "Georgia", size: 16)
@@ -52,7 +52,7 @@ class DailyInspirationView: UIView {
 	lazy var quoteAuthorLabel: UILabel = {
 		let label = UILabel()
 		label.translatesAutoresizingMaskIntoConstraints = false
-		label.textColor = DesignManager.shared.quoteTextColor
+		label.textColor = DesignManager.shared.accentTextColor
 		label.numberOfLines = 2
 		label.lineBreakMode = .byWordWrapping
 		label.font = UIFont(name: "Georgia-Bold", size: 15)
@@ -64,7 +64,7 @@ class DailyInspirationView: UIView {
 	private lazy var decorativeQuoteLabel: UILabel = {
 		let label = UILabel()
 		label.translatesAutoresizingMaskIntoConstraints = false
-		label.textColor = DesignManager.shared.quoteTextColor
+		label.textColor = DesignManager.shared.accentTextColor
 		label.text = "“"
 		label.font = UIFont(name: "Georgia-Bold", size: 45)
 		return label
