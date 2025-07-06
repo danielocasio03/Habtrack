@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import SkeletonView
 
 class DailyInspirationView: UIView {
 	
@@ -21,11 +22,12 @@ class DailyInspirationView: UIView {
 		return label
 	}()
 	
-	lazy var quoteContainer: UIView = {
+	private lazy var quoteContainer: UIView = {
 		let view = UIView()
 		view.translatesAutoresizingMaskIntoConstraints = false
 		view.backgroundColor = DesignManager.shared.whiteContColor
 		view.layer.cornerRadius = 10
+		view.isSkeletonable = true
 		//shadow
 		view.layer.shadowRadius = 4
 		view.layer.shadowColor = UIColor.black.cgColor
@@ -35,13 +37,15 @@ class DailyInspirationView: UIView {
 		return view
 	}()
 	
-	lazy var quoteTextLabel: UILabel = {
+	private lazy var quoteTextLabel: UILabel = {
 		let label = UILabel()
 		label.translatesAutoresizingMaskIntoConstraints = false
 		label.textColor = DesignManager.shared.quoteTextColor
-		label.numberOfLines = 3
+		label.numberOfLines = 0
 		label.lineBreakMode = .byWordWrapping
 		label.font = UIFont(name: "Georgia", size: 16)
+		label.isSkeletonable = true
+		label.skeletonTextNumberOfLines = 2
 		return label
 	}()
 	
@@ -52,6 +56,8 @@ class DailyInspirationView: UIView {
 		label.numberOfLines = 2
 		label.lineBreakMode = .byWordWrapping
 		label.font = UIFont(name: "Georgia-Bold", size: 15)
+		label.isSkeletonable = true
+		label.skeletonTextNumberOfLines = 1
 		return label
 	}()
 	
@@ -64,22 +70,25 @@ class DailyInspirationView: UIView {
 		return label
 	}()
 	
-	
 	//MARK: - Init
 	
 	override init(frame: CGRect) {
 		super.init(frame: .zero)
 		setupView()
+		setupSubviews()
 	}
 	
 	required init?(coder: NSCoder) {
-		fatalError("init(coder:) has not been implemented")
+		super.init(frame: .zero)
+		setupView()
+		setupSubviews()
 	}
 	
 	
-	//MARK: - Setup Methods
+	//MARK: - Private Setup Methods
 	
 	private func setupView() {
+		isSkeletonable = true
 		addSubview(titleLabel)
 		addSubview(quoteContainer)
 		
@@ -91,7 +100,10 @@ class DailyInspirationView: UIView {
 			quoteContainer.leadingAnchor.constraint(equalTo: leadingAnchor),
 			quoteContainer.trailingAnchor.constraint(equalTo: trailingAnchor),
 		])
-		
+	}
+	
+	/// Setup the views child subviews
+	private func setupSubviews() {
 		quoteContainer.addSubview(quoteTextLabel)
 		quoteContainer.addSubview(quoteAuthorLabel)
 		quoteContainer.addSubview(decorativeQuoteLabel)
@@ -100,7 +112,6 @@ class DailyInspirationView: UIView {
 			quoteTextLabel.leadingAnchor.constraint(equalTo: quoteContainer.leadingAnchor, constant: 45),
 			quoteTextLabel.trailingAnchor.constraint(equalTo: quoteContainer.trailingAnchor, constant: -45),
 			quoteTextLabel.centerYAnchor.constraint(equalTo: quoteContainer.centerYAnchor, constant: -5),
-			quoteTextLabel.centerXAnchor.constraint(equalTo: quoteContainer.centerXAnchor),
 			quoteAuthorLabel.trailingAnchor.constraint(equalTo: quoteTextLabel.trailingAnchor),
 			quoteAuthorLabel.topAnchor.constraint(equalTo: quoteTextLabel.bottomAnchor, constant: 10),
 			quoteAuthorLabel.bottomAnchor.constraint(lessThanOrEqualTo: quoteContainer.bottomAnchor, constant: -10),
@@ -109,6 +120,24 @@ class DailyInspirationView: UIView {
 		])
 	}
 	
+	//MARK: - Public Setup Methods
 	
+	/// Takes in a new DailyQuote object and updates quoteText and quoteAuthor Labels
+	public func updateQuote(newQuote: DailyQuote) {
+		self.quoteTextLabel.text = newQuote.quote
+		self.quoteAuthorLabel.text = newQuote.author
+	}
+	
+	/// Method for showing the Skeleton's in constainers subviews
+	public func showQuoteSkeleton() {
+		quoteTextLabel.text = "Loading Today's Quote. Get ready to be inspired..."
+		quoteAuthorLabel.text = "Loading Author..."
+		quoteContainer.showAnimatedGradientSkeleton()
+	}
+	
+	/// Method for hiding the Skeleton's in containers subviews
+	public func hideQuoteSkeleton() {
+		quoteContainer.hideSkeleton(transition: .crossDissolve(0.25))
+	}
 	
 }

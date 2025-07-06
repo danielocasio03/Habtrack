@@ -38,10 +38,12 @@ class TodayContentView: UIView {
 	}
 	
 	required init?(coder: NSCoder) {
-		fatalError("init(coder:) has not been implemented")
+		super.init(frame: .zero)
+		setupScrollView()
+		setupContentView()
 	}
 	
-	//MARK: - Setup Methods
+	//MARK: - Private Setup Methods
 	
 	private func setupScrollView() {
 		self.addSubview(scrollView)
@@ -49,9 +51,9 @@ class TodayContentView: UIView {
 		
 		NSLayoutConstraint.activate([
 			scrollView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-			scrollView.bottomAnchor.constraint(equalTo: bottomAnchor),
-			scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
-			scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
+			scrollView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+			scrollView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+			scrollView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
 			contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
 			contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
 			contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
@@ -66,12 +68,12 @@ class TodayContentView: UIView {
 		
 		NSLayoutConstraint.activate([
 			dailyInspirationView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
-			dailyInspirationView.heightAnchor.constraint(equalToConstant: 180), // Fix to make dynamic height
 			dailyInspirationView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
 			dailyInspirationView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
 			dailyInspirationView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20)
 
 		])
 	}
+	
 	
 }

@@ -10,7 +10,8 @@ import UIKit
 
 class MainTabBarController: UITabBarController {
 	
-	// View Controllers
+	//MARK: - Properties
+	
 	let todayVC: TodayVC = {
 		let vc = TodayVC()
 		vc.title = "Today"
@@ -33,7 +34,8 @@ class MainTabBarController: UITabBarController {
 		return vc
 	}()
 	
-	// Init
+	
+	//MARK: - Init
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
