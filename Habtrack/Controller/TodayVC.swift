@@ -22,6 +22,12 @@ class TodayVC: UIViewController {
 		setupView()
 		setupContentView()
 		updateDailyQuote()
+		setupHabitTableView()
+		
+		// Change - This is here temporarily for testing. Will be moved to a method when user habits are loaded from CoreData
+		DispatchQueue.main.async {
+			self.todayContentView.updateTableViewHeight()
+		}
 	}
 	
 	
@@ -43,6 +49,15 @@ class TodayVC: UIViewController {
 		])
 	}
 	
+	private func setupHabitTableView() {
+		todayContentView.habitsTableView.delegate = self
+		todayContentView.habitsTableView.dataSource = self
+		todayContentView.habitsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+	}
+	
+	
+	//MARK: - Internal Helper Methods
+	
 	/// Method to update the fetch for and update the daily quote
 	private func updateDailyQuote() {
 		todayContentView.dailyInspirationView.showQuoteSkeleton() // 1. Show skeletons
@@ -58,7 +73,28 @@ class TodayVC: UIViewController {
 			}
 		}
 	}
+	
+	
+}
 
 
+//MARK: - EXT: TableView
+
+extension TodayVC: UITableViewDelegate, UITableViewDataSource {
+	
+	
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		return 20 // Change - This needs to be dynamic. here for testing purposes
+	}
+	
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		let cell = todayContentView.habitsTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+		cell.backgroundColor = .blue
+		cell.textLabel?.text = "Test"
+		
+		return cell
+	}
+	
+	
 }
 
