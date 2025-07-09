@@ -25,7 +25,9 @@ class TodayVC: UIViewController {
 		setupHabitTableView()
 		
 		// Change - This is here temporarily for testing. Will be moved to a method when user habits are loaded from CoreData
+		// Also need to ensure this is called after all cells are loaded
 		DispatchQueue.main.async {
+			self.todayContentView.habitsTableView.layoutIfNeeded()
 			self.todayContentView.updateTableViewHeight()
 		}
 	}
@@ -52,7 +54,7 @@ class TodayVC: UIViewController {
 	private func setupHabitTableView() {
 		todayContentView.habitsTableView.delegate = self
 		todayContentView.habitsTableView.dataSource = self
-		todayContentView.habitsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+		todayContentView.habitsTableView.register(HabitCell.self, forCellReuseIdentifier: HabitCell.identifier)
 	}
 	
 	
@@ -84,13 +86,11 @@ extension TodayVC: UITableViewDelegate, UITableViewDataSource {
 	
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return 20 // Change - This needs to be dynamic. here for testing purposes
+		return 5 // Change - This needs to be dynamic. here for testing purposes
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = todayContentView.habitsTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-		cell.backgroundColor = .blue
-		cell.textLabel?.text = "Test"
+		let cell = todayContentView.habitsTableView.dequeueReusableCell(withIdentifier: HabitCell.identifier, for: indexPath)
 		
 		return cell
 	}

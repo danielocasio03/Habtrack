@@ -48,6 +48,7 @@ class TodayContentView: UIView {
 		table.translatesAutoresizingMaskIntoConstraints = false
 		table.isScrollEnabled = false
 		table.backgroundColor = .clear
+		table.separatorStyle = .none
 		return table
 	}()
 	
@@ -105,7 +106,7 @@ class TodayContentView: UIView {
 			dailyInspirationView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -DesignManager.Spacing.standard.value),
 			habitsSectionLabel.topAnchor.constraint(equalTo: dailyInspirationView.bottomAnchor, constant: DesignManager.Spacing.xxLarge.value),
 			habitsSectionLabel.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: DesignManager.Spacing.standard.value),
-			habitsTableView.topAnchor.constraint(equalTo: habitsSectionLabel.bottomAnchor),
+			habitsTableView.topAnchor.constraint(equalTo: habitsSectionLabel.bottomAnchor, constant: DesignManager.Spacing.medium.value),
 			habitsTableView.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor),
 			habitsTableView.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor),
 			habitsTableView.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor),

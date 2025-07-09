@@ -10,8 +10,12 @@ final class DesignManager {
 	
 	/// Padding for subview constraints. For consistency across code base
 	enum Spacing: CGFloat {
+		/// Underlying value of 4
+		case tiny = 4
 		/// Underlying value of 8
 		case small = 8
+		/// Underlying value of 12
+		case smallMed = 12
 		/// Underlying value of 16
 		case medium = 16
 		/// Underlying value of 20
