@@ -44,6 +44,7 @@ final class DesignManager {
 	
 	// MARK: - Colors (Light & Dark Mode)
 	
+	// General View Colors
 	var backgroundColor: UIColor {
 		UIColor { $0.userInterfaceStyle == .dark ?
 			// Dark Mode; charcoal black Color
@@ -101,5 +102,63 @@ final class DesignManager {
 	}
 	
 	
+	// Habit View Colors
+	
+	/// Color options for habitView's
+	enum HabitColor {
+		case pastelRed
+		case pastelBlue
+		case pastelYellow
+		case pastelGreen
+		case pastelPurple
+		case pastelPink
+		
+		var color: UIColor {
+			switch self {
+			case .pastelRed:
+				return UIColor { $0.userInterfaceStyle == .dark ?
+					// Dark Mode: Deeper red
+					UIColor(red: 180/255, green: 100/255, blue: 100/255, alpha: 1.0) :
+					// Light Mode: Pastel red
+					UIColor(red: 255/255, green: 165/255, blue: 165/255, alpha: 1.0)
+				}
+			case .pastelBlue:
+				return UIColor { $0.userInterfaceStyle == .dark ?
+					// Dark Mode: Deeper blue
+					UIColor(red: 100/255, green: 140/255, blue: 190/255, alpha: 1.0) :
+					// Light Mode: Pastel blue
+					UIColor(red: 176/255, green: 205/255, blue: 255/255, alpha: 1.0)
+				}
+			case .pastelYellow:
+				return UIColor { $0.userInterfaceStyle == .dark ?
+					// Dark Mode: Deeper yellow/gold
+					UIColor(red: 200/255, green: 170/255, blue: 90/255, alpha: 1.0) :
+					// Light Mode: Pastel yellow
+					UIColor(red: 255/255, green: 227/255, blue: 159/255, alpha: 1.0)
+				}
+			case .pastelGreen:
+				return UIColor { $0.userInterfaceStyle == .dark ?
+					// Dark Mode: Deeper green
+					UIColor(red: 90/255, green: 170/255, blue: 90/255, alpha: 1.0) :
+					// Light Mode: Pastel green
+					UIColor(red: 152/255, green: 251/255, blue: 152/255, alpha: 1.0)
+				}
+			case .pastelPurple:
+				return UIColor { $0.userInterfaceStyle == .dark ?
+					// Dark Mode: Deeper purple
+					UIColor(red: 150/255, green: 100/255, blue: 150/255, alpha: 1.0) :
+					// Light Mode: Pastel purple
+					UIColor(red: 221/255, green: 160/255, blue: 221/255, alpha: 1.0)
+				}
+			case .pastelPink:
+				return UIColor { $0.userInterfaceStyle == .dark ?
+					// Dark Mode: Deeper pink
+					UIColor(red: 180/255, green: 120/255, blue: 130/255, alpha: 1.0) :
+					// Light Mode: Pastel pink
+					UIColor(red: 255/255, green: 182/255, blue: 193/255, alpha: 1.0)
+				}
+			}
+		}
+	}
 	
 }

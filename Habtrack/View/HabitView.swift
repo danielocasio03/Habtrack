@@ -12,6 +12,8 @@ class HabitView: UIView {
 	
 	//MARK: - UI Components
 	
+	private let habitColor: DesignManager.HabitColor
+	
 	private lazy var titleLabel: UILabel = {
 		let label = UILabel()
 		label.translatesAutoresizingMaskIntoConstraints = false
@@ -39,10 +41,11 @@ class HabitView: UIView {
 		return label
 	}()
 	
-	
 	//MARK: - Init
 	
-	override init(frame: CGRect) {
+	// Custom Init
+	init(color: DesignManager.HabitColor) {
+		habitColor = color
 		super.init(frame: .zero)
 		setupView()
 		setupSubviews()
@@ -57,7 +60,7 @@ class HabitView: UIView {
 	
 	private func setupView() {
 		translatesAutoresizingMaskIntoConstraints = false
-		backgroundColor = DesignManager.shared.accentTextColor  // Change - This will have dynamic color scheming in the future
+		backgroundColor = habitColor.color
 		layer.cornerRadius = 10
 		//Shadow
 		layer.shadowRadius = 4 // Fix - Shadow is not being applied

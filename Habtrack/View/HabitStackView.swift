@@ -18,9 +18,12 @@ class HabitStackView: UIStackView {
 	override init(frame: CGRect) {
 		super.init(frame: .zero)
 		setupStack()
-		addHabitView(HabitView())
-		addHabitView(HabitView())
-		addHabitView(HabitView())
+		addHabitView(HabitView(color: .pastelRed)) // Delete - Temporary for Testing
+		addHabitView(HabitView(color: .pastelBlue))
+		addHabitView(HabitView(color: .pastelYellow))
+		addHabitView(HabitView(color: .pastelGreen))
+		addHabitView(HabitView(color: .pastelPurple))
+		addHabitView(HabitView(color: .pastelPink))
 	}
 	
 	required init(coder: NSCoder) {
