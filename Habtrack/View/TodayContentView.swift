@@ -14,6 +14,8 @@ class TodayContentView: UIView {
 	//MARK: - Subviews & Properties
 	
 	let dailyInspirationView = DailyInspirationView()
+	
+	let habitsStack = HabitStackView()
 		
 	private lazy var scrollView: UIScrollView = {
 		let scrollView = UIScrollView()
@@ -42,17 +44,6 @@ class TodayContentView: UIView {
 		label.font = UIFont(name: "AvenirNext-DemiBold", size: 24)
 		return label
 	}()
-	
-	lazy var habitsTableView: UITableView = {
-		let table = UITableView()
-		table.translatesAutoresizingMaskIntoConstraints = false
-		table.isScrollEnabled = false
-		table.backgroundColor = .clear
-		table.separatorStyle = .none
-		return table
-	}()
-	
-	private var tableViewHeightConstraint: NSLayoutConstraint!
 
 	
 	//MARK: - Init
@@ -92,10 +83,8 @@ class TodayContentView: UIView {
 		contentView.addSubview(dailyInspirationView)
 		contentView.addSubview(titleView)
 		contentView.addSubview(habitsSectionLabel)
-		contentView.addSubview(habitsTableView)
+		contentView.addSubview(habitsStack)
 		dailyInspirationView.translatesAutoresizingMaskIntoConstraints = false
-		tableViewHeightConstraint = habitsTableView.heightAnchor.constraint(equalToConstant: 0)
-		
 		
 		NSLayoutConstraint.activate([
 			titleView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor),
@@ -106,25 +95,11 @@ class TodayContentView: UIView {
 			dailyInspirationView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -DesignManager.Spacing.standard.value),
 			habitsSectionLabel.topAnchor.constraint(equalTo: dailyInspirationView.bottomAnchor, constant: DesignManager.Spacing.xxLarge.value),
 			habitsSectionLabel.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: DesignManager.Spacing.standard.value),
-			habitsTableView.topAnchor.constraint(equalTo: habitsSectionLabel.bottomAnchor, constant: DesignManager.Spacing.medium.value),
-			habitsTableView.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor),
-			habitsTableView.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor),
-			habitsTableView.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor),
-			tableViewHeightConstraint
+			habitsStack.topAnchor.constraint(equalTo: habitsSectionLabel.bottomAnchor, constant: DesignManager.Spacing.standard.value),
+			habitsStack.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: DesignManager.Spacing.standard.value),
+			habitsStack.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -DesignManager.Spacing.standard.value),
+			habitsStack.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor),
 		])
 	}
 	
-	
-	//MARK: - Public Methods
-	
-	/// Method to resize table as needed, called when changes are made
-	public func updateTableViewHeight() {
-		habitsTableView.layoutIfNeeded()
-		let newHeight = habitsTableView.contentSize.height // Get height off content (cell, header, footer) height
-		
-		UIView.animate(withDuration: 0.3) {
-			self.tableViewHeightConstraint.constant = newHeight // Set new height with animation
-			self.layoutIfNeeded()
-		}
-	}
 }
