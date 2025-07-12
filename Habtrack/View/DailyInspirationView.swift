@@ -95,7 +95,7 @@ class DailyInspirationView: UIView {
 		NSLayoutConstraint.activate([
 			titleLabel.topAnchor.constraint(equalTo: topAnchor),
 			titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-			quoteContainer.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: DesignManager.Spacing.standard.value),
+			quoteContainer.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: DesignManager.Spacing.standard),
 			quoteContainer.bottomAnchor.constraint(equalTo: bottomAnchor),
 			quoteContainer.leadingAnchor.constraint(equalTo: leadingAnchor),
 			quoteContainer.trailingAnchor.constraint(equalTo: trailingAnchor),
@@ -109,14 +109,14 @@ class DailyInspirationView: UIView {
 		quoteContainer.addSubview(decorativeQuoteLabel)
 		
 		NSLayoutConstraint.activate([
-			quoteTextLabel.leadingAnchor.constraint(equalTo: quoteContainer.leadingAnchor, constant: DesignManager.Spacing.xxLarge.value),
-			quoteTextLabel.trailingAnchor.constraint(equalTo: quoteContainer.trailingAnchor, constant: -DesignManager.Spacing.xxLarge.value),
-			quoteTextLabel.centerYAnchor.constraint(equalTo: quoteContainer.centerYAnchor, constant: -DesignManager.Spacing.small.value),
+			quoteTextLabel.leadingAnchor.constraint(equalTo: quoteContainer.leadingAnchor, constant: DesignManager.Spacing.xxLarge),
+			quoteTextLabel.trailingAnchor.constraint(equalTo: quoteContainer.trailingAnchor, constant: -DesignManager.Spacing.xxLarge),
+			quoteTextLabel.centerYAnchor.constraint(equalTo: quoteContainer.centerYAnchor, constant: -DesignManager.Spacing.small),
 			quoteAuthorLabel.trailingAnchor.constraint(equalTo: quoteTextLabel.trailingAnchor),
-			quoteAuthorLabel.topAnchor.constraint(equalTo: quoteTextLabel.bottomAnchor, constant: DesignManager.Spacing.medium.value),
-			quoteAuthorLabel.bottomAnchor.constraint(lessThanOrEqualTo: quoteContainer.bottomAnchor, constant: -DesignManager.Spacing.standard.value),
-			decorativeQuoteLabel.topAnchor.constraint(equalTo: quoteContainer.topAnchor, constant: DesignManager.Spacing.medium.value),
-			decorativeQuoteLabel.trailingAnchor.constraint(equalTo: quoteTextLabel.leadingAnchor, constant: -DesignManager.Spacing.small.value)
+			quoteAuthorLabel.topAnchor.constraint(equalTo: quoteTextLabel.bottomAnchor, constant: DesignManager.Spacing.medium),
+			quoteAuthorLabel.bottomAnchor.constraint(lessThanOrEqualTo: quoteContainer.bottomAnchor, constant: -DesignManager.Spacing.standard),
+			decorativeQuoteLabel.topAnchor.constraint(equalTo: quoteContainer.topAnchor, constant: DesignManager.Spacing.medium),
+			decorativeQuoteLabel.trailingAnchor.constraint(equalTo: quoteTextLabel.leadingAnchor, constant: -DesignManager.Spacing.small)
 		])
 	}
 	

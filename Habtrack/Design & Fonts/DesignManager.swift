@@ -8,28 +8,40 @@ final class DesignManager {
 	
 	//MARK: - Dynamic Content and Utilities
 	
-	/// Padding for subview constraints. For consistency across code base
-	enum Spacing: CGFloat {
+	enum Spacing {
 		/// Underlying value of 4
-		case tiny = 4
+		static let tiny: CGFloat = 4
 		/// Underlying value of 8
-		case small = 8
+		static let small: CGFloat = 8
 		/// Underlying value of 12
-		case smallMed = 12
+		static let smallMed: CGFloat = 12
 		/// Underlying value of 16
-		case medium = 16
+		static let medium: CGFloat = 16
 		/// Underlying value of 20
-		case standard = 20
+		static let standard: CGFloat = 20
 		/// Underlying value of 30
-		case large = 30
+		static let large: CGFloat = 30
 		/// Underlying value of 40
-		case xLarge = 40
+		static let xLarge: CGFloat = 40
 		/// Underlying value of 50
-		case xxLarge = 50
-		
-		var value: CGFloat {
-			return self.rawValue
-		}
+		static let xxLarge: CGFloat = 50
+		/// Underlying value of 65
+		static let xxxLarge: CGFloat = 65
+	}
+	
+	enum Sizing {
+		/// Underlying value of 0.5; (For use in Subtle UIView dividers)
+		static let divider: CGFloat = 0.5
+		/// Underlying value of 3
+		static let tiny: CGFloat = 3
+		/// Underlying value of 27
+		static let standard: CGFloat = 27
+		/// Underlying value of 50
+		static let large: CGFloat = 50
+		/// Underlying value of 60
+		static let xxLarge: CGFloat = 60
+		/// Underlying value of 70
+		static let xxxlarge: CGFloat = 70
 	}
 	
 	/// Returns greeting based off time of day

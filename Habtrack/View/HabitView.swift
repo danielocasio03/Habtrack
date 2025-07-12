@@ -76,18 +76,18 @@ class HabitView: UIView {
 		addSubview(goalTimeLabel)
 		
 		NSLayoutConstraint.activate([
-			titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: DesignManager.Spacing.smallMed.value),
-			titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: DesignManager.Spacing.medium.value),
-			titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -DesignManager.Spacing.medium.value),
+			titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: DesignManager.Spacing.smallMed),
+			titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: DesignManager.Spacing.medium),
+			titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -DesignManager.Spacing.medium),
 			
-			subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: DesignManager.Spacing.tiny.value),
+			subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: DesignManager.Spacing.tiny),
 			subtitleLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
 			subtitleLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
 			
-			goalTimeLabel.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: DesignManager.Spacing.tiny.value),
+			goalTimeLabel.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: DesignManager.Spacing.tiny),
 			goalTimeLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
 			goalTimeLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
-			goalTimeLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -DesignManager.Spacing.smallMed.value)
+			goalTimeLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -DesignManager.Spacing.smallMed)
 			
 		])
 	}

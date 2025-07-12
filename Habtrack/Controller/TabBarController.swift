@@ -46,6 +46,7 @@ class TabBarController: UITabBarController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setupTabBar()
+		setupNavControllers()
 		barButtonTapped()
 	}
 	
@@ -57,21 +58,22 @@ class TabBarController: UITabBarController {
 		view.addSubview(customBar)
 		customBar.translatesAutoresizingMaskIntoConstraints = false
 		
-		// Creating Navigation Controllers and adding to TabBar VC's
+		NSLayoutConstraint.activate([
+			customBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: DesignManager.Spacing.large),
+			customBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -DesignManager.Spacing.large),
+			customBar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -DesignManager.Spacing.standard),
+			customBar.heightAnchor.constraint(equalToConstant: DesignManager.Sizing.xxxlarge)
+		])
+	}
+	
+	private func setupNavControllers() {
 		let todayNav = UINavigationController(rootViewController: todayVC)
 		todayNav.setNavigationBarHidden(true, animated: false)
-		
 		let analyticsNav = UINavigationController(rootViewController: analyticsVC)
 		let calendarNav = UINavigationController(rootViewController: calendarVC)
 		let settingsNav = UINavigationController(rootViewController: settingsVC)
-		self.viewControllers = [todayNav, analyticsNav, calendarNav, settingsNav]
 		
-		NSLayoutConstraint.activate([
-			customBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
-			customBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
-			customBar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
-			customBar.heightAnchor.constraint(equalToConstant: 70)
-		])
+		self.viewControllers = [todayNav, analyticsNav, calendarNav, settingsNav]
 	}
 	
 	

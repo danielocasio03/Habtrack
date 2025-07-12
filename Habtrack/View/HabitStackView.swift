@@ -39,7 +39,7 @@ class HabitStackView: UIStackView {
 		axis = .vertical
 		distribution = .fillEqually
 		alignment = .fill
-		spacing = DesignManager.Spacing.large.value
+		spacing = DesignManager.Spacing.large
 	}
 	
 	

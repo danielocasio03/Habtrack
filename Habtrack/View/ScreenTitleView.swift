@@ -50,13 +50,13 @@ class ScreenTitleView: UIView {
 		addSubview(dividerView)
 		
 		NSLayoutConstraint.activate([
-			greetingLabel.topAnchor.constraint(equalTo: topAnchor, constant: DesignManager.Spacing.standard.value),
-			greetingLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: DesignManager.Spacing.standard.value),
-			dividerView.topAnchor.constraint(equalTo: greetingLabel.bottomAnchor, constant: DesignManager.Spacing.standard.value),
+			greetingLabel.topAnchor.constraint(equalTo: topAnchor, constant: DesignManager.Spacing.standard),
+			greetingLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: DesignManager.Spacing.standard),
+			dividerView.topAnchor.constraint(equalTo: greetingLabel.bottomAnchor, constant: DesignManager.Spacing.standard),
 			dividerView.bottomAnchor.constraint(equalTo: bottomAnchor),
 			dividerView.leadingAnchor.constraint(equalTo: leadingAnchor),
 			dividerView.trailingAnchor.constraint(equalTo: trailingAnchor),
-			dividerView.heightAnchor.constraint(equalToConstant: 0.5)
+			dividerView.heightAnchor.constraint(equalToConstant: DesignManager.Sizing.divider)
 		])
 		
 	}

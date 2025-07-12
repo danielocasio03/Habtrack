@@ -12,6 +12,7 @@ class CustomTabBarView: UIView {
 	
 	//MARK: - Properties
 
+	/// Constraint for centering the notch under selected icon
 	var centerConstraint: NSLayoutConstraint!
 	var barButtonTapped: ((_ at: Int) -> Void)?
 	
@@ -49,9 +50,9 @@ class CustomTabBarView: UIView {
 	}()
 	
 	// TabBar Buttons
-	lazy var barButtons = [homeButton, fireButton, calendarButton, settingsButton]
+	lazy var barButtons = [homeButton, analyticsButton, calendarButton, settingsButton]
 	private lazy var homeButton = generateBarIcon(selectedImage: UIImage(named: "selectedHome") , UnselectedImage: UIImage(named: "unselectedHome"))
-	private lazy var fireButton = generateBarIcon(selectedImage: UIImage(named: "blueFire"), UnselectedImage: UIImage(named: "unselectedFire"))
+	private lazy var analyticsButton = generateBarIcon(selectedImage: UIImage(named: "blueFire"), UnselectedImage: UIImage(named: "unselectedFire"))
 	private lazy var calendarButton = generateBarIcon(selectedImage: UIImage(named: "selectedCalendar"), UnselectedImage: UIImage(named: "unselectedCalendar"))
 	private lazy var settingsButton = generateBarIcon(selectedImage: UIImage(named: "selectedSettings"), UnselectedImage: UIImage(named: "unselectedSettings"))
 		
@@ -88,10 +89,12 @@ class CustomTabBarView: UIView {
 		centerButton.addSubview(plusImageView)
 		
 		NSLayoutConstraint.activate([
+			// Center Button Constraints
 			centerButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-			centerButton.centerYAnchor.constraint(equalTo: topAnchor,constant: 10),
-			centerButton.widthAnchor.constraint(equalToConstant: 50), // Change to be dynamic
-			centerButton.heightAnchor.constraint(equalToConstant: 50),
+			centerButton.centerYAnchor.constraint(equalTo: topAnchor,constant: DesignManager.Spacing.small),
+			centerButton.widthAnchor.constraint(equalToConstant: DesignManager.Sizing.large),
+			centerButton.heightAnchor.constraint(equalToConstant: DesignManager.Sizing.large),
+			// Plus Image View Constraints
 			plusImageView.centerXAnchor.constraint(equalTo: centerButton.centerXAnchor),
 			plusImageView.centerYAnchor.constraint(equalTo: centerButton.centerYAnchor),
 			plusImageView.widthAnchor.constraint(equalTo: centerButton.widthAnchor, multiplier: 0.80),
@@ -99,41 +102,45 @@ class CustomTabBarView: UIView {
 		])
 	}
 	
-	func setupBarButtons() {
+	private func setupBarButtons() {
 		addSubview(homeButton)
-		homeButton.isSelected = true
-		addSubview(fireButton)
+		addSubview(analyticsButton)
 		addSubview(calendarButton)
 		addSubview(settingsButton)
 		addSubview(selectedNotch)
 		
+		homeButton.isSelected = true
 		centerConstraint = selectedNotch.centerXAnchor.constraint(equalTo: homeButton.centerXAnchor)
 		
 		NSLayoutConstraint.activate([
+			// Home Button Constraints
 			homeButton.centerYAnchor.constraint(equalTo: centerYAnchor),
-			homeButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30), // Change to Spacing enum
-			homeButton.heightAnchor.constraint(equalToConstant: 27), // Change to be dynamic
-			homeButton.widthAnchor.constraint(equalToConstant: 27),
-			fireButton.centerYAnchor.constraint(equalTo: centerYAnchor),
-			fireButton.leadingAnchor.constraint(equalTo: homeButton.leadingAnchor, constant: 65),
-			fireButton.heightAnchor.constraint(equalToConstant: 27), // Change to be dynamic
-			fireButton.widthAnchor.constraint(equalToConstant: 27),
-			
+			homeButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: DesignManager.Spacing.large),
+			homeButton.heightAnchor.constraint(equalToConstant: DesignManager.Sizing.standard),
+			homeButton.widthAnchor.constraint(equalToConstant: DesignManager.Sizing.standard),
+			// Analytics Button Constraints
+			analyticsButton.centerYAnchor.constraint(equalTo: centerYAnchor),
+			analyticsButton.leadingAnchor.constraint(equalTo: homeButton.leadingAnchor, constant: DesignManager.Spacing.xxxLarge),
+			analyticsButton.heightAnchor.constraint(equalToConstant: DesignManager.Sizing.standard),
+			analyticsButton.widthAnchor.constraint(equalToConstant: DesignManager.Sizing.standard),
+			// Settings Button Constraints
 			settingsButton.centerYAnchor.constraint(equalTo: centerYAnchor),
-			settingsButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30),
-			settingsButton.heightAnchor.constraint(equalToConstant: 27), // Change to be dynamic
-			settingsButton.widthAnchor.constraint(equalToConstant: 27),
+			settingsButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -DesignManager.Spacing.large),
+			settingsButton.heightAnchor.constraint(equalToConstant: DesignManager.Sizing.standard),
+			settingsButton.widthAnchor.constraint(equalToConstant: DesignManager.Sizing.standard),
+			// Calendar Button Constraints
 			calendarButton.centerYAnchor.constraint(equalTo: centerYAnchor),
-			calendarButton.trailingAnchor.constraint(equalTo: settingsButton.trailingAnchor, constant: -65), // Change to Spacing enum
-			calendarButton.heightAnchor.constraint(equalToConstant: 27), // Change to be dynamic
-			calendarButton.widthAnchor.constraint(equalToConstant: 27),
-
-			selectedNotch.widthAnchor.constraint(equalToConstant: 20),
-			selectedNotch.heightAnchor.constraint(equalToConstant: 3),
-			selectedNotch.topAnchor.constraint(equalTo: homeButton.bottomAnchor, constant: 8),
+			calendarButton.trailingAnchor.constraint(equalTo: settingsButton.trailingAnchor, constant: -DesignManager.Spacing.xxxLarge),
+			calendarButton.heightAnchor.constraint(equalToConstant: DesignManager.Sizing.standard),
+			calendarButton.widthAnchor.constraint(equalToConstant: DesignManager.Sizing.standard),
+			// Selected Notch Constraints
+			selectedNotch.heightAnchor.constraint(equalToConstant: DesignManager.Sizing.tiny),
+			selectedNotch.widthAnchor.constraint(equalTo: homeButton.widthAnchor, multiplier: 0.75),
+			selectedNotch.topAnchor.constraint(equalTo: homeButton.bottomAnchor, constant: DesignManager.Spacing.small),
 			centerConstraint
 		])
 	}
+	
 	
 	//MARK: - Action Methods
 	
@@ -141,35 +148,13 @@ class CustomTabBarView: UIView {
 		print("Button Tapped!") // Change - add actual handling to this
 	}
 	
-	/// Deselects all buttons, selecting and moving the notch to user selected tab button
+	/// Update UI and call callback method passing in button index
 	@objc func barButtonTappedAction(_ sender: UIButton) {
-		[homeButton, fireButton, calendarButton, settingsButton].forEach { $0.isSelected = false }
-		sender.isSelected = true
-		centerConstraint.isActive = false
-		removeConstraint(centerConstraint)
+		updateSelectedTab(selectedButton: sender)
 		
-		switch sender {
-		case homeButton:
-			centerConstraint = selectedNotch.centerXAnchor.constraint(equalTo: homeButton.centerXAnchor)
-		case fireButton:
-			centerConstraint = selectedNotch.centerXAnchor.constraint(equalTo: fireButton.centerXAnchor)
-		case calendarButton:
-			centerConstraint = selectedNotch.centerXAnchor.constraint(equalTo: calendarButton.centerXAnchor)
-		case settingsButton:
-			centerConstraint = selectedNotch.centerXAnchor.constraint(equalTo: settingsButton.centerXAnchor)
-		default:
-			break
-		}
-		
-		centerConstraint.isActive = true
 		guard let selectedIndex = barButtons.firstIndex(where: { $0.isSelected == true }) else { return }
-				
 		if let barButtonTapped = barButtonTapped {
 			barButtonTapped(selectedIndex)
-		}
-		
-		UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0) {
-			self.layoutIfNeeded()
 		}
 	}
 	
@@ -185,5 +170,21 @@ class CustomTabBarView: UIView {
 		button.imageView?.contentMode = .scaleAspectFit
 		button.addTarget(self, action: #selector(barButtonTappedAction), for: .touchUpInside)
 		return button
+	}
+	
+	/// Handles the UI updates for selected tab icon; Changes highlighted tab, moves notch to selected tab, and animates
+	private func updateSelectedTab(selectedButton: UIButton) {
+		[homeButton, analyticsButton, calendarButton, settingsButton].forEach { $0.isSelected = false } // 1. Deselect all buttons, select tapped button
+		selectedButton.isSelected = true
+
+		centerConstraint.isActive = false // 2. Removing prior center constraint for notch location
+		removeConstraint(centerConstraint)
+	
+		centerConstraint = selectedNotch.centerXAnchor.constraint(equalTo: selectedButton.centerXAnchor) // 3. Setting new center constraint for notch locale
+		centerConstraint.isActive = true
+		
+		UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0) {
+			self.layoutIfNeeded()
+		}
 	}
 }
