@@ -1,18 +1,18 @@
 //
-//  MyHabitsVC.swift
+//  CalendarVC.swift
 //  Habtrack
 //
-//  Created by Daniel Efrain Ocasio on 7/2/25.
+//  Created by Daniel Efrain Ocasio on 7/12/25.
 //
 
 import Foundation
 import UIKit
 
-class MyHabitsVC: UIViewController {
+class CalendarVC: UIViewController {
+	
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
 	}
-	
 }
