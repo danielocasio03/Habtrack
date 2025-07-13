@@ -61,7 +61,7 @@ class TabBarController: UITabBarController {
 		NSLayoutConstraint.activate([
 			customBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: DesignManager.Spacing.large),
 			customBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -DesignManager.Spacing.large),
-			customBar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -DesignManager.Spacing.standard),
+			customBar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -DesignManager.Spacing.medium),
 			customBar.heightAnchor.constraint(equalToConstant: DesignManager.Sizing.xxxlarge)
 		])
 	}

@@ -72,7 +72,7 @@ class TodayContentView: UIView {
 			scrollView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
 			scrollView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
 			contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-			contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+			contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -DesignManager.Spacing.tabBarBottomSpacing),
 			contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
 			contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
 			contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),

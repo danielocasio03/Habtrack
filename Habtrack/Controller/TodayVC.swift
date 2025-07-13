@@ -25,7 +25,7 @@ class TodayVC: UIViewController {
 	}
 	
 	
-	//MARK: - Private Setup Methods
+	// MARK: - Private Setup Methods
 	
 	private func setupView() {
 		view.backgroundColor = DesignManager.shared.backgroundColor
@@ -44,7 +44,7 @@ class TodayVC: UIViewController {
 	}
 	
 	
-	//MARK: - Internal Helper Methods
+	// MARK: - Internal Helper Methods
 	
 	/// Method to update the fetch for and update the daily quote
 	private func updateDailyQuote() {
