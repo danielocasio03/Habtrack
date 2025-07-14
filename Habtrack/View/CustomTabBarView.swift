@@ -14,7 +14,8 @@ class CustomTabBarView: UIView {
 
 	/// Constraint for centering the notch under selected icon
 	var centerConstraint: NSLayoutConstraint!
-	var barButtonTapped: ((_ at: Int) -> Void)?
+	var barButtonTapHandler: ((_ at: Int) -> Void)?
+	var centerTapHandler: (()-> Void)?
 	
 	
 	//MARK: - UI Components
@@ -145,7 +146,8 @@ class CustomTabBarView: UIView {
 	//MARK: - Action Methods
 	
 	@objc func centerButtonTapped() {
-		print("Button Tapped!") // Change - add actual handling to this
+		guard let centerTapHandler else {return}
+		centerTapHandler()
 	}
 	
 	/// Update UI and call callback method passing in button index
@@ -153,7 +155,7 @@ class CustomTabBarView: UIView {
 		updateSelectedTab(selectedButton: sender)
 		
 		guard let selectedIndex = barButtons.firstIndex(where: { $0.isSelected == true }) else { return }
-		if let barButtonTapped = barButtonTapped {
+		if let barButtonTapped = barButtonTapHandler {
 			barButtonTapped(selectedIndex)
 		}
 	}

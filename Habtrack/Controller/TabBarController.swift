@@ -48,6 +48,7 @@ class TabBarController: UITabBarController {
 		setupTabBar()
 		setupNavControllers()
 		barButtonTapped()
+		centerButtonTapped()
 	}
 	
 	
@@ -79,11 +80,49 @@ class TabBarController: UITabBarController {
 	
 	//MARK: - Private Utility Methods
 	
+	/// Helper method for creating NewHabitFormVC and presenting
+	private func presentNewHabitForm() {
+		let newHabitFormVC = NewHabitFormVC()
+		let newHabitNav = UINavigationController(rootViewController: newHabitFormVC)
+		
+		newHabitFormVC.title = "Create New Habit"
+		newHabitFormVC.navigationItem.leftBarButtonItem = UIBarButtonItem (
+			title: "Cancel",
+			style: .plain,
+			target: self,
+			action: #selector(cancelTapped)
+		)
+		newHabitFormVC.navigationController?.navigationBar.backgroundColor = DesignManager.shared.containerColor
+		self.present(newHabitNav, animated: true)
+	}
+	
+	 /// Helper method for changing tabs
+	private func changeTab(index: Int) {
+		self.selectedIndex = index
+	}
+	
+	
+	// MARK: - Action Methods
+	
+	///  Handler method adding behavior to when a barButton is tapped
 	private func barButtonTapped() {
-		customBar.barButtonTapped = { index in
-			print(index) // Delete - For Testing
-			self.selectedIndex = index
+		customBar.barButtonTapHandler = { [weak self] index in
+			guard let self = self else {return}
+			changeTab(index: index)
 		}
+	}
+	
+	///  Handler method adding behavior to when centerButton is tapped
+	private func centerButtonTapped() {
+		customBar.centerTapHandler = { [weak self] in
+			guard let self = self else {return}
+			presentNewHabitForm()
+		}
+	}
+	
+	/// Handler method for when cancel is tapped on a presented VC
+	@objc func cancelTapped() {
+		dismiss(animated: true)
 	}
 	
 }
