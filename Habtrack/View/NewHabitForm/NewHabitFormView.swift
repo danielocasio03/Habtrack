@@ -12,7 +12,7 @@ class NewHabitFormView: UIView {
 	
 	// MARK: - UI Components
 	
-	private lazy var contentView: UIStackView = {
+	private lazy var contentViewStack: UIStackView = {
 		let stack = UIStackView()
 		stack.translatesAutoresizingMaskIntoConstraints = false
 		stack.axis = .vertical
@@ -30,37 +30,7 @@ class NewHabitFormView: UIView {
 		return image
 	}()
 	
-	// Title and Desc Stackview
-	private lazy var titleDescStack: UIStackView = {
-		let stack = UIStackView()
-		stack.translatesAutoresizingMaskIntoConstraints = false
-		stack.addArrangedSubview(habitTitleField)
-		stack.addArrangedSubview(habitDescField)
-		stack.layer.cornerRadius = 10
-		stack.axis = .vertical
-		stack.spacing = 1
-		stack.distribution = .fillEqually
-		stack.alignment = .center
-		stack.backgroundColor = DesignManager.shared.containerColor
-		return stack
-	}()
-	
-	private lazy var habitTitleField: UITextField = {
-		let field = UITextField()
-		field.translatesAutoresizingMaskIntoConstraints = false
-		field.placeholder = "Habit Title"
-		field.leftView = UIImageView(image: UIImage(named: "unselectedHome"))
-		return field
-	}()
-	
-	private lazy var habitDescField: UITextField = {
-		let field = UITextField()
-		field.translatesAutoresizingMaskIntoConstraints = false
-		field.placeholder = "Habit Title"
-		field.leftView = UIImageView(image: UIImage(named: "unselectedHome"))
-		return field
-	}()
-	
+	private lazy var titleDescStack = TitleDescStack()
 	private lazy var goalStartStack = GoalStartStack()
 	
 	
@@ -80,30 +50,30 @@ class NewHabitFormView: UIView {
 	// MARK: - Setup Methods
 	
 	private func setupContentView() {
-		addSubview(contentView)
+		addSubview(contentViewStack)
 		
 		NSLayoutConstraint.activate([
-			contentView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: DesignManager.Spacing.standard),
-			contentView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
-			contentView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
-			contentView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
+			contentViewStack.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: DesignManager.Spacing.standard),
+			contentViewStack.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+			contentViewStack.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+			contentViewStack.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
 		])
 	}
 	
 	private func setupSubviews() {
-		contentView.addArrangedSubview(healthyHabitsImage)
-		contentView.addArrangedSubview(titleDescStack)
-		contentView.addArrangedSubview(goalStartStack)
+		contentViewStack.addArrangedSubview(healthyHabitsImage)
+		contentViewStack.addArrangedSubview(titleDescStack)
+		contentViewStack.addArrangedSubview(goalStartStack)
 		
 		NSLayoutConstraint.activate([
 			// healthyHabitsImage
-			healthyHabitsImage.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.35),
-			healthyHabitsImage.heightAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.35),
-			healthyHabitsImage.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+			healthyHabitsImage.widthAnchor.constraint(equalTo: contentViewStack.widthAnchor, multiplier: 0.35),
+			healthyHabitsImage.heightAnchor.constraint(equalTo: contentViewStack.widthAnchor, multiplier: 0.35),
+			healthyHabitsImage.centerXAnchor.constraint(equalTo: contentViewStack.centerXAnchor),
 			
 			// titleDescStack
-			titleDescStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: DesignManager.Spacing.standard),
-			titleDescStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -DesignManager.Spacing.standard),
+			titleDescStack.leadingAnchor.constraint(equalTo: contentViewStack.leadingAnchor, constant: DesignManager.Spacing.standard),
+			titleDescStack.trailingAnchor.constraint(equalTo: contentViewStack.trailingAnchor, constant: -DesignManager.Spacing.standard),
 			
 			// goalStartStack
 			goalStartStack.leadingAnchor.constraint(equalTo: titleDescStack.leadingAnchor),

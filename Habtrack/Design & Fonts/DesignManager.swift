@@ -104,6 +104,17 @@ final class DesignManager {
 		}
 	}
 	
+	// Sub Heading Text Color; seen in less focused icons, and headings
+	var subHeadingTextColor: UIColor {
+		UIColor { $0.userInterfaceStyle == .dark ?
+			// Dark Mode; Light grey Color
+			UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 0.5) :
+			
+			// Light Mode; Charcoal Color
+			UIColor(red: 25/255, green: 23/255, blue: 22/255, alpha: 0.5)
+		}
+	}
+	
 	// Accent text color; seen in the quote and author labels.  : Dark = Orange
 	var accentTextColor: UIColor {
 		UIColor { $0.userInterfaceStyle == .dark ?

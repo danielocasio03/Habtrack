@@ -56,6 +56,13 @@ class GoalStartStack: UIStackView {
 			bottom: DesignManager.Spacing.small,
 			right: DesignManager.Spacing.smallMed
 		)
+		
+		//shadow
+		layer.shadowRadius = 4
+		layer.shadowColor = DesignManager.shared.shadowColor.cgColor
+		layer.shadowOffset = CGSize(width: 0, height: 1)
+		layer.shadowOpacity = 0.25
+		layer.masksToBounds = false
 	}
 	
 	private func setupSubviews() {
@@ -68,7 +75,7 @@ class GoalStartStack: UIStackView {
 	// MARK: - Utility Methods
 	
 	/// Creates and returns a form button
-	private func configureButton(systemImage: String, title: String, label: UILabel) -> UIButton {
+	private func configureButton(systemImage: String, title: String, label: UILabel) -> UIButton { // Change - Refactor this, modularize this method
 		let button = UIButton()
 		button.translatesAutoresizingMaskIntoConstraints = false
 		
@@ -76,7 +83,7 @@ class GoalStartStack: UIStackView {
 		let image = UIImageView(image: UIImage(systemName: systemImage))
 		button.addSubview(image)
 		image.translatesAutoresizingMaskIntoConstraints = false
-		image.tintColor = DesignManager.shared.headingTextColor.withAlphaComponent(0.5) // Change - create own color for views like this
+		image.tintColor = DesignManager.shared.subHeadingTextColor
 		image.contentMode = .scaleAspectFit
 		
 		// titleLabel
@@ -84,14 +91,14 @@ class GoalStartStack: UIStackView {
 		button.addSubview(titleLabel)
 		titleLabel.translatesAutoresizingMaskIntoConstraints = false
 		titleLabel.text = title
-		titleLabel.textColor = DesignManager.shared.headingTextColor.withAlphaComponent(0.5)
+		titleLabel.textColor = DesignManager.shared.subHeadingTextColor
 		titleLabel.font = UIFont(name: "AvenirNext-Medium", size: 15)
 		
 		// Chevron
 		let chevronIcon = UIImageView(image: UIImage(systemName: "chevron.up.chevron.down"))
 		button.addSubview(chevronIcon)
 		chevronIcon.translatesAutoresizingMaskIntoConstraints = false
-		chevronIcon.tintColor = DesignManager.shared.headingTextColor.withAlphaComponent(0.5) // Change - create own color for views like this
+		chevronIcon.tintColor = DesignManager.shared.subHeadingTextColor
 		chevronIcon.contentMode = .scaleAspectFit
 		
 		// value label
