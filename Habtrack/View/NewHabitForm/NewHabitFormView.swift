@@ -30,6 +30,19 @@ class NewHabitFormView: UIView {
 		return image
 	}()
 	
+	private lazy var addHabitButton: UIButton = {
+		let button = UIButton()
+		button.translatesAutoresizingMaskIntoConstraints = false
+		button.backgroundColor = DesignManager.shared.accentColor
+		button.layer.cornerRadius = 10
+		button.addTarget(self, action: #selector(addHabitTapped), for: .touchUpInside)
+		let attributedTitle = NSAttributedString (
+			string: "Add New Habit",
+			attributes: [ .font: UIFont(name: "AvenirNext-Bold", size: 19) ?? UIFont.systemFont(ofSize: 19) ])
+		button.setAttributedTitle(attributedTitle, for: .normal)
+		return button
+	}()
+	
 	private lazy var titleDescStack = TitleDescStack()
 	private lazy var goalStartStack = GoalStartStack()
 	private lazy var pomoStack = PomoStack()
@@ -56,7 +69,7 @@ class NewHabitFormView: UIView {
 		
 		NSLayoutConstraint.activate([
 			contentViewStack.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: DesignManager.Spacing.standard),
-			contentViewStack.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+			contentViewStack.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -DesignManager.Spacing.small),
 			contentViewStack.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
 			contentViewStack.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
 		])
@@ -68,6 +81,7 @@ class NewHabitFormView: UIView {
 		contentViewStack.addArrangedSubview(goalStartStack)
 		contentViewStack.addArrangedSubview(pomoStack)
 		contentViewStack.addArrangedSubview(colorSelectorStack)
+		contentViewStack.addArrangedSubview(addHabitButton)
 		
 		NSLayoutConstraint.activate([
 			// healthyHabitsImage
@@ -90,7 +104,28 @@ class NewHabitFormView: UIView {
 			// colorSelectorStack
 			colorSelectorStack.leadingAnchor.constraint(equalTo: titleDescStack.leadingAnchor),
 			colorSelectorStack.trailingAnchor.constraint(equalTo: titleDescStack.trailingAnchor),
+			
+			// addNewButton
+			addHabitButton.leadingAnchor.constraint(equalTo: titleDescStack.leadingAnchor),
+			addHabitButton.trailingAnchor.constraint(equalTo: titleDescStack.trailingAnchor),
+			addHabitButton.heightAnchor.constraint(equalTo: colorSelectorStack.heightAnchor)
 		])
+	}
+	
+	
+	// MARK: - Action Methods
+	
+	@objc func addHabitTapped() {
+		UIView.animate(withDuration: 0.1,
+					   animations: {
+			self.addHabitButton.transform = CGAffineTransform(scaleX: 0.97, y: 0.97)
+		}, completion: { _ in
+			UIView.animate(withDuration: 0.1) {
+				self.addHabitButton.transform = .identity
+			}
+		})
+		
+		print("Tapped to add new habit")
 	}
 		
 }
