@@ -33,6 +33,7 @@ class NewHabitFormView: UIView {
 	private lazy var titleDescStack = TitleDescStack()
 	private lazy var goalStartStack = GoalStartStack()
 	private lazy var pomoStack = PomoStack()
+	private lazy var colorSelectorStack = ColorSelectorStack()
 	
 	
 	// MARK: - Init
@@ -66,6 +67,7 @@ class NewHabitFormView: UIView {
 		contentViewStack.addArrangedSubview(titleDescStack)
 		contentViewStack.addArrangedSubview(goalStartStack)
 		contentViewStack.addArrangedSubview(pomoStack)
+		contentViewStack.addArrangedSubview(colorSelectorStack)
 		
 		NSLayoutConstraint.activate([
 			// healthyHabitsImage
@@ -84,6 +86,10 @@ class NewHabitFormView: UIView {
 			// pomoStack
 			pomoStack.leadingAnchor.constraint(equalTo: titleDescStack.leadingAnchor),
 			pomoStack.trailingAnchor.constraint(equalTo: titleDescStack.trailingAnchor),
+			
+			// colorSelectorStack
+			colorSelectorStack.leadingAnchor.constraint(equalTo: titleDescStack.leadingAnchor),
+			colorSelectorStack.trailingAnchor.constraint(equalTo: titleDescStack.trailingAnchor),
 		])
 	}
 		

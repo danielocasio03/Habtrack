@@ -168,6 +168,8 @@ final class DesignManager {
 		case pastelGreen
 		case pastelPurple
 		case pastelPink
+		case pastelTeal
+		case pastelOrange
 		
 		var color: UIColor {
 			switch self {
@@ -212,6 +214,20 @@ final class DesignManager {
 					UIColor(red: 180/255, green: 120/255, blue: 130/255, alpha: 1.0) :
 					// Light Mode: Pastel pink
 					UIColor(red: 255/255, green: 182/255, blue: 193/255, alpha: 1.0)
+				}
+			case .pastelTeal:
+				return UIColor { $0.userInterfaceStyle == .dark ?
+					// Dark Mode: Deeper Teal
+					UIColor(red: 118/255, green: 211/255, blue: 205/255, alpha: 1.0) :
+					// Light Mode: pastel Teal
+					UIColor(red: 178/255, green: 255/255, blue: 242/255, alpha: 1.0) 
+				}
+			case .pastelOrange:
+				return UIColor { $0.userInterfaceStyle == .dark ?
+				// Dark Mode: Deeper Orange
+					UIColor(red: 255/255, green: 167/255, blue: 99/255, alpha: 1.0) :
+				// Light Mode: Pastel Orange
+					UIColor(red: 255/255, green: 204/255, blue: 153/255, alpha: 1.0)
 				}
 			}
 		}
