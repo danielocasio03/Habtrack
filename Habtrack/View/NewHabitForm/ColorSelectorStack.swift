@@ -46,6 +46,12 @@ class ColorSelectorStack: UIStackView {
 			bottom: DesignManager.Spacing.medium,
 			right: DesignManager.Spacing.medium)
 		
+		//shadow
+		layer.shadowRadius = 4
+		layer.shadowColor = DesignManager.shared.shadowColor.cgColor
+		layer.shadowOffset = CGSize(width: 0, height: 1)
+		layer.shadowOpacity = 0.25
+		layer.masksToBounds = false
 	}
 	
 	private func createColorButtons() {
