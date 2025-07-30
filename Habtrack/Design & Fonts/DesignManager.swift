@@ -115,18 +115,18 @@ final class DesignManager {
 		}
 	}
 	
-	// Accent text color; seen in the quote and author labels.  : Dark = Orange
+	// Accent text color; seen in the quote and author labels.
 	var accentTextColor: UIColor {
 		UIColor { $0.userInterfaceStyle == .dark ?
-			// Dark Mode; Electric Blue Color
-			UIColor(red: 52/255, green: 152/255, blue: 219/255, alpha: 1) :
+			// Dark Mode: Muted golden orange
+			UIColor(red: 255/255, green: 184/255, blue: 108/255, alpha: 1.0) :
 			
-			// Light Mode; Red Color
-			UIColor(red: 131/255, green: 54/255, blue: 63/255, alpha: 1)
+			// Light Mode: Slightly richer warm orange
+			UIColor(red: 215/255, green: 110/255, blue: 50/255, alpha: 1.0)
 		}
 	}
 	
-	// Accent text color; seen in the quote and author labels.  : Dark = Orange
+	// Accent text color; seen in the quote and author labels.
 	var accentColor: UIColor {
 		UIColor { $0.userInterfaceStyle == .dark ?
 			// Dark Mode; Electric Blue Color

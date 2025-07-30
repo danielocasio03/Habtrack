@@ -43,7 +43,7 @@ class DailyInspirationView: UIView {
 		label.textColor = DesignManager.shared.accentTextColor
 		label.numberOfLines = 0
 		label.lineBreakMode = .byWordWrapping
-		label.font = UIFont(name: "Georgia", size: 16)
+		label.font = UIFont(name: "Georgia", size: 16.5)
 		label.isSkeletonable = true
 		label.skeletonTextNumberOfLines = 2
 		return label
@@ -55,7 +55,7 @@ class DailyInspirationView: UIView {
 		label.textColor = DesignManager.shared.accentTextColor
 		label.numberOfLines = 2
 		label.lineBreakMode = .byWordWrapping
-		label.font = UIFont(name: "Georgia-Bold", size: 15)
+		label.font = UIFont(name: "Georgia-Bold", size: 16)
 		label.isSkeletonable = true
 		label.skeletonTextNumberOfLines = 1
 		return label

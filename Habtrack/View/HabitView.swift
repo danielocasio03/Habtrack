@@ -63,11 +63,11 @@ class HabitView: UIView {
 		backgroundColor = habitColor.color
 		layer.cornerRadius = 10
 		//Shadow
-		layer.shadowRadius = 4 // Fix - Shadow is not being applied
+		layer.shadowRadius = 4
 		layer.shadowColor = DesignManager.shared.shadowColor.cgColor
 		layer.shadowOffset = CGSize(width: 0, height: 1)
-		layer.shadowOpacity = 0.25
-		layer.masksToBounds = true
+		layer.shadowOpacity = 0.50
+		layer.masksToBounds = false
 	}
 	
 	func setupSubviews() {
