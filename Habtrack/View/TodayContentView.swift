@@ -87,14 +87,21 @@ class TodayContentView: UIView {
 		dailyInspirationView.translatesAutoresizingMaskIntoConstraints = false
 		
 		NSLayoutConstraint.activate([
+			// titleView
 			titleView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor),
 			titleView.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor),
 			titleView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+			
+			// dailyInspirationView
 			dailyInspirationView.topAnchor.constraint(equalTo: titleView.bottomAnchor, constant: DesignManager.Spacing.large),
 			dailyInspirationView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: DesignManager.Spacing.standard),
 			dailyInspirationView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -DesignManager.Spacing.standard),
+			
+			// habitSectionLabel
 			habitsSectionLabel.topAnchor.constraint(equalTo: dailyInspirationView.bottomAnchor, constant: DesignManager.Spacing.xxLarge),
 			habitsSectionLabel.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: DesignManager.Spacing.standard),
+			
+			// habitStack
 			habitsStack.topAnchor.constraint(equalTo: habitsSectionLabel.bottomAnchor, constant: DesignManager.Spacing.standard),
 			habitsStack.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: DesignManager.Spacing.standard),
 			habitsStack.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -DesignManager.Spacing.standard),

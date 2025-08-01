@@ -12,6 +12,13 @@ class NewHabitFormView: UIView {
 	
 	// MARK: - UI Components
 	
+	private lazy var scrollView: UIScrollView = {
+		let scrollView = UIScrollView()
+		scrollView.translatesAutoresizingMaskIntoConstraints = false
+		scrollView.showsHorizontalScrollIndicator = false
+		return scrollView
+	}()
+	
 	private lazy var contentViewStack: UIStackView = {
 		let stack = UIStackView()
 		stack.translatesAutoresizingMaskIntoConstraints = false
@@ -19,6 +26,7 @@ class NewHabitFormView: UIView {
 		stack.distribution = .equalSpacing
 		stack.alignment = .center
 		stack.backgroundColor = .clear
+		stack.spacing = DesignManager.Spacing.xLarge
 		return stack
 	}()
 	
@@ -53,7 +61,7 @@ class NewHabitFormView: UIView {
 	
 	override init(frame: CGRect) {
 		super.init(frame: frame)
-		setupContentView()
+		setupParentViews()
 		setupSubviews()
 	}
 	
@@ -64,14 +72,23 @@ class NewHabitFormView: UIView {
 	
 	// MARK: - Setup Methods
 	
-	private func setupContentView() {
-		addSubview(contentViewStack)
+	private func setupParentViews() {
+		addSubview(scrollView)
+		scrollView.addSubview(contentViewStack)
 		
 		NSLayoutConstraint.activate([
-			contentViewStack.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: DesignManager.Spacing.standard),
-			contentViewStack.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -DesignManager.Spacing.small),
-			contentViewStack.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
-			contentViewStack.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
+			// scrollView
+			scrollView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+			scrollView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+			scrollView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
+			scrollView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+			
+			// contentViewStack
+			contentViewStack.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: DesignManager.Spacing.standard),
+			contentViewStack.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -DesignManager.Spacing.small),
+			contentViewStack.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+			contentViewStack.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+			contentViewStack.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
 		])
 	}
 	
@@ -108,7 +125,7 @@ class NewHabitFormView: UIView {
 			// addNewButton
 			addHabitButton.leadingAnchor.constraint(equalTo: titleDescStack.leadingAnchor),
 			addHabitButton.trailingAnchor.constraint(equalTo: titleDescStack.trailingAnchor),
-			addHabitButton.heightAnchor.constraint(equalTo: colorSelectorStack.heightAnchor)
+			addHabitButton.heightAnchor.constraint(equalTo: colorSelectorStack.heightAnchor),
 		])
 	}
 	
